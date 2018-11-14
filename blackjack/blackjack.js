@@ -65,10 +65,9 @@
       let tempDeck = deck.concat([]);
       if (hasAce(tempDeck)) {
         let aceCount = howManyAce(tempDeck);
-        let onlyAcetempDeck = [];
         for (let i = 0; i < tempDeck.length; i++) {
           if (isNaN(parseInt(tempDeck[i]))) {
-            onlyAcetempDeck.push(tempDeck.splice(i, 1));
+              tempDeck.splice(i, 1);
           }
         }
         let countWithoutAce = countCard(tempDeck);
