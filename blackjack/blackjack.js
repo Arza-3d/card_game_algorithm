@@ -17,7 +17,7 @@
 
     // pull card from main deck
     function pullCard() {
-      let cardPull = Math.round(Math.random()*mainDecks.length);
+      let cardPull = Math.round(Math.random()*(mainDecks.length - 1));
       return mainDecks.splice(cardPull, 1);
     }
 
@@ -28,7 +28,7 @@
     }
 
     function isStillCanPlay(cardMin = 7) {
-      return mainDecks.length() > cardMin;
+      return mainDecks.length > cardMin;
     }
 
     function countCard(deck = playerDeck) {
@@ -62,19 +62,34 @@
       }
     }
 
+    function clearPlayersDeck() {
+      playerDeck = [];
+      aiDeck = [];
+    }
+
   }
 
   // play
   {
+
     create1Deck();
-    giveCardTo();
-    giveCardTo(aiDeck);
-    console.log(playerDeck);
-    console.log(aiDeck);
-    console.log(mainDecks);
-    console.log('player card count is ' + countCard());
-    console.log('ai card count is ' + countCard(aiDeck));
-    console.log(checkWinStatus());
+    function playBlackJack() {
+      if (isStillCanPlay()) {
+        clearPlayersDeck();
+        giveCardTo();
+        giveCardTo(aiDeck);
+        //console.log(playerDeck);
+        //console.log(aiDeck);
+        //console.log(mainDecks);
+        console.log('player card count is ' + countCard());
+        console.log('ai card count is ' + countCard(aiDeck));
+        console.log(checkWinStatus());
+      } else {
+        console.log('can\'t play anymore');
+      }
+    }
+    playBlackJack();
+
   }
 
 }
